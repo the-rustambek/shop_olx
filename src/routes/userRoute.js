@@ -1,9 +1,8 @@
 const router = require("express").Router();
-const {userRegGetController} = require("../controllers/userRouteController")
-
-
+const {userRegGetController,userLoginGetController} = require("../controllers/userRouteController");
 
 router.get("/signup",userRegGetController);
+router.get("/login",userLoginGetController);
 
 module.exports = {
     path: "/users",
