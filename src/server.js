@@ -33,7 +33,7 @@ async function server(mode){
     app.set("views",path.join(__dirname,"views"));
     
    } finally { 
-       routes(app)
+       routes(app);
    }
 }
 
