@@ -3,8 +3,9 @@ const {userRegGetController,userLoginGetController,userVerifyGetController,userS
 
 router.get("/signup",userRegGetController);
 router.get("/login",userLoginGetController);
+router.get("/verify/:id",userVerifyGetController);
 router.post("/signup",userSignUpPostController);
-router.post("/verify/:id",userVerifyGetController)
+
 module.exports = {
     path: "/users",
     router,
