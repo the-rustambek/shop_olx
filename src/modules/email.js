@@ -1,22 +1,27 @@
 const nodemailer = require("nodemailer");
 
 module.exports.email = async function email(to, mail_body, mail_html, subject){
+  try{
+
+  
     const transport = await nodemailer.createTransport({
-        host:"smtp.yandex.ru",
+        host:"smtp.mail.ru",
         port:465,
-        secure:true,
         auth:{
-            user:"Rustambek0103",
-            pass:"alcaxldzllaoolcc",
+            user:"rustambek0301@mail.ru",
+            pass:"UN6V8JJe42qY2yx26anB",
         },
     });
 
     return await transport.sendMail({
-        form: `"Bizning kompaniya" <Rustambek0301@yandex.ru>`,
+        form: `"Bizning kompaniya" <rustambek0301@mail.ru>`,
         to,
         subject,
         text:mail_body,
         html:mail_html,
     })
-
+  }
+    catch(error){
+        console.log(error)
+    }
 }

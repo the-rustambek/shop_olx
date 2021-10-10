@@ -1,7 +1,7 @@
 const {signUpValidation}=require("../modules/validations");
 const users = require("../models/userModels");
 const {generateHash} =  require("../modules/bcrypt");
-const email =  require("../modules/email");
+const {email:sendEmail} =  require("../modules/email");
 
 module.exports =  class userRouteController{
     static async userRegGetController(req,res){
@@ -19,13 +19,13 @@ static async userSignUpPostController (req,res){
             name, email, 
             password: await generateHash(password)
         })
-await email(
+await sendEmail(
     email, 
     "Iltimos pochtangizni tasdiqlang",
     "Pochtangizni tasdiqlash uchun link",
     `<a href="http://localhost:8080/users/verify/${user._id}"/>Tasdiqlash</a>`
 );
-res.redirect("/login");
+res.redirect("/login"); 
 
     } catch (error) {
         console.log(error);
@@ -34,5 +34,9 @@ res.redirect("/login");
         }); 
         
     }
+ 
+}
+static async userVerifyGetController(req,res){
+        
 }
 }
