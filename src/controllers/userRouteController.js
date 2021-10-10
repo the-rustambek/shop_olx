@@ -18,7 +18,7 @@ static async userSignUpPostController (req,res){
         const user = await users.create({
             name, email, 
             password: await generateHash(password)
-        })
+        });
 await sendEmail(
     email, 
     "Iltimos pochtangizni tasdiqlang",
@@ -26,7 +26,6 @@ await sendEmail(
     `<a href="http://localhost:8080/users/verify/${user._id}"/>Tasdiqlash</a>`
 );
 res.redirect("/login"); 
-
     } catch (error) {
         console.log(error);
         res.render("reg",{
@@ -37,6 +36,6 @@ res.redirect("/login");
  
 }
 static async userVerifyGetController(req,res){
-        
+      
 }
 }
