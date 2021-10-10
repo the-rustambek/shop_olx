@@ -15,6 +15,11 @@ const userSchema = new mongoose.Schema({
   password:{
     type:String,
     required:true,
+  },
+  isVerified:{
+    type:Boolean, 
+    required:true,
+    default:false,
   }
 });
 

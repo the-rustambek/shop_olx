@@ -6,4 +6,15 @@ module.exports =  class userRouteController{
     res.render("login");
 }
 
+static async userSignUpPostController (req,res){
+    try {
+        
+    } catch (error) {
+        console.log(error);
+        res.render("reg",{
+            error:error + "",
+        }); 
+        
+    }
+}
 }
