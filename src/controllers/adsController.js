@@ -7,8 +7,6 @@ module.exports = class adsRouteController {
 			user: req.user,
 			categories: await categories.find(),
 		});
-
-	
   }
   static async adsAddPostController(req,res){
 	try{
