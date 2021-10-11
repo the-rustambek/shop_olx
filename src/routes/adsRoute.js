@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {adsAddGetController,adsAddPostController} = require("../controllers/adsController");
+const {adsAddGetController,adsAddPostController, adsOneGetController} = require("../controllers/adsController");
 const fileUpload =  require("express-fileupload");
 
 
@@ -9,6 +9,7 @@ const fileUploadForAds  = fileUpload({
 
 router.get("/add",adsAddGetController);
 router.post("/add",fileUploadForAds,adsAddPostController);
+router.get("/:slug", adsOneGetController);
 
 
 module.exports = {

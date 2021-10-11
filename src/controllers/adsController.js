@@ -39,14 +39,24 @@ module.exports = class adsRouteController {
 
 
 	}
+	const slug = slugify(title,
+		{lower:true, strict:true,replacement:"_"  }) + Date.now();
+
 	let a =  await ads.create({
-		title,description,price,address,photos,number,
-		slug:slugify(title, {lower:true, strict:true,replacement:"_"  }),
+		title,
+		description,
+		price,
+		address,
+		photos,
+		number,
+		slug,
 		category_id:category,
 		owner_id:req.user._id,
 
 	});
 	console.log(a);
+
+	res.redirect("/ads/"+slug);
 	}
 	catch(error){
 		res.render("add_ads", {
@@ -55,6 +65,17 @@ module.exports = class adsRouteController {
 			error: error + "",
 		});
 	}
+}
+
+static async adsOneGetController(req,res){
+	const adsOne = await ads.findOne({
+		slug:req.params.slug,
+	}).populate("owner_id").populate("category_id");
+	console.log(adsOne);
+	res.render("ads_page",{
+		ads:adsOne,
+		user:req.user,
+	});
 }
 
 };

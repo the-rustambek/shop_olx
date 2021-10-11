@@ -36,7 +36,11 @@ description:{
     required:true,
 },
 
-slug: String,
+slug:{
+    type:String,
+    required:true,
+    unique:true,
+}
 
 
 });
