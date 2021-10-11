@@ -1,7 +1,7 @@
 const  {checkToken
 } =  require("../modules/jwt");
 const users =  require("../models/userModels");
-const userMiddleWare = require("./userMiddleWare")
+
 
 
 module.exports = async function userMiddleWare(req,res,next){

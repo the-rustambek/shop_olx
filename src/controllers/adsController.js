@@ -18,8 +18,8 @@ module.exports = class adsRouteController {
 		const {title, description, price,number,address,category,file} =  await addAdsValidation(req.body);
 
 	let photos = [];
-	if(Array.isArray(req.files.file)){
-		req.files.file.forEach((photo) =>{
+	if(Array.isArray(req.files.photos)){
+		req.files.photos.forEach((photo) =>{
 			// console.log(photo); // shu  yerda photo chiqmayapti
 		const name =  photo.md5 + ".jpg";
 		
@@ -30,9 +30,9 @@ module.exports = class adsRouteController {
 
 	}
 	else{
-		const name = req.files.file.md5 + ".jpg";
+		const name = req.files.photos.md5 + ".jpg";
 		
-		req.files.file.mv(path.join(__dirname,"..","public","uploads",name));
+		req.files.photos.mv(path.join(__dirname,"..","public","uploads",name));
 		photos.push(name);
 
 		// console.log(photos) // bitta rasm massivda kelyapti
@@ -70,7 +70,7 @@ module.exports = class adsRouteController {
 static async adsOneGetController(req,res){
 	const adsOne = await ads.findOne({
 		slug:req.params.slug,
-	}).populate("category_id");
+	}).populate("owner_id").populate("category_id");
 	console.log(adsOne);
 	res.render("ads_page",{
 		ads:adsOne,

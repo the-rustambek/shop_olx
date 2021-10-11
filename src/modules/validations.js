@@ -27,7 +27,7 @@ module.exports = class Validations {
             .pattern(/^998(9[012345789]|6[125679]|7[01234569])[0-9]{7}$/),
             address: joi.string().required().min(3).max(128).error(new Error("Addresda xato bor")),
             category: joi.string().required().error(new Error("Categoryada xato bor")),
-            file: joi.string(),
+            photos: joi.string(),
             price: joi.number().required().min(0).error(new Error("NARXDA raqamda xato bor")),
             description: joi.string().required().min(8).max(1024).error(new Error("Description da xato bor")),
         }).validateAsync(data);

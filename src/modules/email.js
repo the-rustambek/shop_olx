@@ -1,7 +1,6 @@
 const nodemailer = require("nodemailer");
 
 module.exports.email = async function email(to, mail_body, mail_html, subject){
-  try{
 
   
     const transport = await nodemailer.createTransport({
@@ -19,9 +18,5 @@ module.exports.email = async function email(to, mail_body, mail_html, subject){
         subject,
         text:mail_body,
         html:mail_html,
-    })
-  }
-    catch(error){
-        console.log(error)
-    }
-}
+    });  
+};

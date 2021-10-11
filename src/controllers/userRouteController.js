@@ -2,9 +2,9 @@ const {
     signUpValidation,
     loginValidation
 } = require("../modules/validations");
-const {
-    userVerifyGetController
-} = require("../routes/userRoute");
+// const {
+//     userVerifyGetController
+// } = require("../routes/userRoute");
 const users = require("../models/userModels");
 const {
     generateHash,
@@ -19,6 +19,7 @@ const {
 const {
     isValidObjectId
 } = require("mongoose");
+const ads = require("../models/adsModel");
 
 
 module.exports = class userRouteController {

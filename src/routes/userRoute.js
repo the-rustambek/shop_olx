@@ -8,7 +8,7 @@ router.get("/verify/:id",userVerifyGetController);
 router.post("/signup",userSignUpPostController);
 router.get("/exit",userExitGetController);
 router.post("/login",userLoginPostController)
-router.get("/profile",authMiddleWare,userProfileGetController);
+router.get("/:id",authMiddleWare,userProfileGetController);
 
 module.exports = {
     path: "/users",

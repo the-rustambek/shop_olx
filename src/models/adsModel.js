@@ -1,10 +1,9 @@
-const { string } = require("joi");
+
 const mongoose =  require("mongoose");
 
 const adsSchema = new mongoose.Schema({
   title: {
     type:String,
-   
     required:true,
   },
   number:{
@@ -20,15 +19,16 @@ const adsSchema = new mongoose.Schema({
       type:mongoose.Schema.Types.ObjectId,
       ref:"categories",
   },
-  owner:{
+  owner_id:{
     type:mongoose.Schema.Types.ObjectId,
     ref:"users",
       
   },
-  file:[String],
+  photos:[String],
 
     price:{
       type:Number,
+      min:0,
       required:true,
   },
 description:{
