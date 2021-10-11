@@ -21,7 +21,7 @@ module.exports = async function authMiddleWare(req,res,next){
         const user = await users.findOne({
             _id: data.id,
         });
-        console.log(user);
+        // console.log(user);
         req.user =  user;
         next();
     }

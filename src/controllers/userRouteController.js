@@ -96,9 +96,33 @@ module.exports = class userRouteController {
             const {
                 email,
                 password
-            } = loginValidation(req.body);
+            } =await  loginValidation(req.body);
+
+            const user = await users.findOne({
+                email:email,
+            });
+
+            if(!user) throw new Error("User topilmadi");
+
+            if(!(await compareHash(password, user.password)))
+            throw new Error("Parol xato");
+            res.cookie("token",await createToken({
+                id:user._id,
+            })).redirect("/");
+
+
+
         } catch (error) {
 
+            res.render("login",{
+                error: error + "",
+            })
         }
     }
+
+    static async userExitGetController(req,res){
+        res.clearCookie("token").redirect("/");
+    }
+
+
 }

@@ -19,7 +19,7 @@ async function server(mode){
     }));
     app.use(cookieParser());
     await mongo();
-    app.use( express.static(path.join(__dirname, "public")));
+    app.use( express.static(path.join(__dirname,"src", "public")));
     app.use(authMiddleWare);
     await mongo();
     if(mode == "DEV"){
