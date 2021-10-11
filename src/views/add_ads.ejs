@@ -14,7 +14,7 @@
                     
                       <div class="col-sm-6">
                         <label for="adsName" class="form-label">Ads name</label>
-                        <input type="text" minlength="4" class="form-control" placeholder="ads name" name="adsName" id="firstName" placeholder=""  required   />
+                        <input type="text" minlength="4" class="form-control" placeholder="ads name" name="title" id="firstName" placeholder=""  required   />
                       
                       </div>
           
@@ -27,15 +27,29 @@
                       </div>
           
           
-                      <div class="col-12">
+                      <div class="col-sm-6">
                         <label for="address" class="form-label">Address</label>
                         <input type="text" name="address" class="form-control" id="address" placeholder="1234 Main St" required />
                       
                       </div>
+                      <div class="col-sm-6">
+                        <label for="category" class="form-label">Kategory</label>
+                       <select name="category" class="form-control" id="" required>
+                         <% for(let category of categories) { %>
+                          <option value="<%= category._id %>">
+                            <%= category.name %>
+                          </option>
+
+                          <%}%>
+                       </select>
+                      
+                      </div>
+                      
+
           
                       <div class="col-sm-6">
                         <label for="formFile" class="form-label">Image upload</label>
-                        <input class="form-control" type="file" id="formFile"name="file" required />
+                        <input class="form-control" type="file" id="formFile"name="file" accept=".png, .jpeg, .jpg" multiple required />
                       </div>
                       <div class="col-sm-6">
                         <label for="number" class="form-label">Price</label>
@@ -43,7 +57,7 @@
                       </div>
                       <div class="col-12">
                         <label for="About"minlength="5" class="form-label">Ads about</label>
-                        <textarea class="form-control"name="adsAbout" placeholder="Ads about" required />
+                        <textarea class="form-control"name="description" placeholder="Ads about" required />
 
                         </textarea>
                       </div>

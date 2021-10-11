@@ -16,4 +16,19 @@ module.exports = class Validations{
             password:joi.string().required().error(new Error("Password is invalid"))
         }).validateAsync(data);
     }
+
+
+    static async addAdsValidation(data){
+        return await joi.object({
+           title:joi.string().required().min(8).max(128).error(new Error("Sarlavhada xato bor")),
+           number:joi.number().required().min(3).error(new Error("Telefon raqamda xato bor")),
+       
+           address:joi.string().required().min(3).max(128).error(new Error("Addresda xato bor")),
+           category:joi.string().required().error(new Error("Categoryada xato bor")),
+              
+              file:joi.string(),
+              price:joi.number().required().min(0).error(new Error("NARXDA raqamda xato bor")),
+              description:joi.string().required().min(8).max(1024).error(new Error("Description da xato bor")),
+        }).validateAsync(data);
+    }
 }
