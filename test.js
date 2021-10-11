@@ -9,7 +9,7 @@ const categories = require("./src/models/categoryModel");
         },
         {
             name:"Mashinalarr",
-            photo: "cars_icon.png",
+            photo: "mashina.png",
             
         },
         {
