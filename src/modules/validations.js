@@ -20,7 +20,7 @@ module.exports = class Validations {
 
     static async addAdsValidation(data) {
         return await joi.object({
-            title: joi.string().required().min(3).max(128).error(new Error("Sarlavhada xato bor")),
+            title: joi.string().required().trim().min(3).max(128).error(new Error("Sarlavhada xato bor")),
             number: joi.string()
             .required()
             .error(new Error("Raqam o'zbekistonni emas"))
