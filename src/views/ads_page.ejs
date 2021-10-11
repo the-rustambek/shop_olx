@@ -1,7 +1,64 @@
 <%- include("parts/header") %>
+<div class="my-4 py-4">
+  <div class="container">
 
+ 
 <h1 class="text-light text-center m-4 p-4">
-  Nomi
+  <%= ads.title %>
 </h1>
+
+<div class="card mb-3 mt-4" >
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="/public/uploads/<%=  ads.photos %>" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+       <table class="table-striped">
+         <thead>
+           <tr>
+             <th>Xususiyat</th>
+             <th>Telefon</th>
+             <th>Qiymat</th>
+             <th>Category haqida</th>
+
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>Kategoriya</td>
+             <td>
+              <%=  ads.category_id.name %>
+             </td>
+           </tr>
+           <tr>
+            <td>Telefon</td>
+            <td>
+   <a href="/users/<%=  ads.owner_id._id%></a>">
+   <%=  ads.owner_id.name  %>
+  </a>
+  <span>          <%=   ads.number %></span>
+            </td>
+          </tr>
+          <tr>
+            <td>Qiymat</td>
+            <td>
+             <%=  ads.price %>
+            </td>
+          </tr>
+          <tr>
+            <td>Kategoriya haqida</td>
+            <td>
+             <%=  ads.description %> so'm
+            </td>
+          </tr>
+         </tbody>
+       </table>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
 
 <%- include("parts/footer") %>
