@@ -3,12 +3,12 @@ const {adsAddGetController,adsAddPostController} = require("../controllers/adsCo
 const fileUpload =  require("express-fileupload");
 
 
-// const fileUploadForAds  = fileUpload({
-//     saveFileNames:true,
-// });
+const fileUploadForAds  = fileUpload({
+    saveFileNames:true,
+});
 
 router.get("/add",adsAddGetController);
-router.post("/add",fileUpload,adsAddPostController);
+router.post("/add",fileUploadForAds,adsAddPostController);
 
 
 module.exports = {
