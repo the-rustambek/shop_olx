@@ -1,5 +1,5 @@
 <%- include("parts/header")  %> 
-
+<% var error  %> 
 
 <div class="ads text-light" style="padding:80px">
     <div class="container ">
@@ -11,7 +11,11 @@
                 <div class="col-md-10 col-lg-10 g-3">
                     
                   <form class="needs-validation row g-3"method="POST"  enctype="multipart/form-data" novalidate>
-                    
+                    <% if(error) {%> 
+                      <div class="alert my-2 alert-danger">
+                          <%= error  %> 
+                      </div>
+                  <% } %> 
                       <div class="col-sm-6">
                         <label for="adsName" class="form-label">Ads name</label>
                         <input type="text" minlength="4" class="form-control" placeholder="ads name" name="title" id="firstName" placeholder=""  required   />
@@ -40,7 +44,7 @@
                             <%= category.name %>
                           </option>
 
-                          <%}%>
+                          <% } %>
                        </select>
                       
                       </div>
@@ -49,7 +53,11 @@
           
                       <div class="col-sm-6">
                         <label for="formFile" class="form-label">Image upload</label>
-                        <input class="form-control" type="file" id="formFile"name="file" accept=".png, .jpeg, .jpg" multiple required />
+                        <input class="form-control"
+                        type="file"
+                        name="file"
+                        multiple
+                        accept=".png, .jpeg, .jpg" />
                       </div>
                       <div class="col-sm-6">
                         <label for="number" class="form-label">Price</label>

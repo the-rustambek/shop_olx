@@ -12,7 +12,7 @@ module.exports = class adsRouteController {
 	try{
 		const {title, description, price,number,address,category,file} =  await addAdsValidation(req.body);
 
-		console.log(title, description, price,number,address,category,file)
+		console.log(title,number,address,category,file,price,description)
 	}
 	catch(error){
 		res.render("add_ads", {
