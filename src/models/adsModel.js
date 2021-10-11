@@ -8,11 +8,11 @@ const adsSchema = new mongoose.Schema({
     required:true,
   },
   number:{
-      type:string,
+      type: Number,
       required:true,
   },
   address:{
-    type:string,
+    type:String,
     required:true,
   },
 
@@ -28,7 +28,7 @@ const adsSchema = new mongoose.Schema({
   file:[String],
 
     price:{
-      type:number,
+      type:Number,
       required:true,
   },
 description:{
@@ -41,4 +41,4 @@ description:{
 
 const ads = mongoose.model("ads",adsSchema);
 
-module.exports =  adss;
+module.exports =  ads;
