@@ -124,5 +124,9 @@ module.exports = class userRouteController {
         res.clearCookie("token").redirect("/");
     }
 
-
+static async userProfileGetController(req,res){
+    res.render("profile",{
+        user:req.user,
+    });
+}
 }

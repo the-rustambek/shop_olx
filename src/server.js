@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 const path = require('path');
 const routes = require('./routes/routes');
 const mongo = require("./modules/mongoose");
-const authMiddleWare = require("./middleware/authMiddleWare")
+const userMiddleWare = require("./middleware/userMiddleWare")
 
 
 async function server(mode){
@@ -20,7 +20,7 @@ async function server(mode){
     app.use(cookieParser());
     await mongo();
     app.use( express.static(path.join(__dirname,"src", "public")));
-    app.use(authMiddleWare);
+    app.use(userMiddleWare);
     await mongo();
     if(mode == "DEV"){
         app.use(morgan("dev"));
