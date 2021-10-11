@@ -8,4 +8,12 @@ module.exports = class Validations{
             password:joi.string().required().error(new Error("Password is invalid"))
         }).validateAsync(data);
     }
+
+    static async loginValidation(data){
+        return await joi.object({
+   
+            email: joi.string().required().trim().lowercase().error(new Error("Email is invalid")),
+            password:joi.string().required().error(new Error("Password is invalid"))
+        }).validateAsync(data);
+    }
 }

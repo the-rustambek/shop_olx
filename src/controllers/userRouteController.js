@@ -1,10 +1,25 @@
 const {
-    signUpValidation
+    signUpValidation,
+    loginValidation
 } = require("../modules/validations");
-const{userVerifyGetController} = require("../routes/userRoute");
+const {
+    userVerifyGetController
+} = require("../routes/userRoute");
 const users = require("../models/userModels");
-const { generateHash,compareHash} = require("../modules/bcrypt");
-const {email: sendMail} = require("../modules/email");
+const {
+    generateHash,
+    compareHash
+} = require("../modules/bcrypt");
+const {
+    email: sendMail
+} = require("../modules/email");
+const {
+    createToken
+} = require("../modules/jwt");
+const {
+    isValidObjectId
+} = require("mongoose");
+
 
 module.exports = class userRouteController {
     static async userRegGetController(req, res) {
@@ -27,7 +42,7 @@ module.exports = class userRouteController {
                 email,
                 password: await generateHash(password)
             });
-     
+
 
 
             // await sendMail(
@@ -36,10 +51,9 @@ module.exports = class userRouteController {
             //     "Pochtangizni tasdiqlash uchun link",
             //     `<a href="http://localhost:8080/users/verify/${user._id}"/>Tasdiqlash</a>`
             // );
-            console.log(`<a href="http://localhost:8080/users/verify/${user._id}`)
+            console.log(`http://localhost:8080/users/verify/${user._id}`)
             res.redirect("/users/login");
-        } 
-        catch (error) {
+        } catch (error) {
             console.log(error);
             res.render("reg", {
                 error: error + "",
@@ -50,28 +64,41 @@ module.exports = class userRouteController {
     }
     static async userVerifyGetController(req, res) {
         try {
-            const  
-                id
-             = req.params.id;
+            const
+                id = req.params.id;
             if (!id) throw new Error("Verification kalit xato");
+
+            if (!isValidObjectId(id)) throw new Error("Verification kalit xato");
+
             const user = await users.findOne({
                 _id: id,
             })
 
-            if(!user) throw new Error("Verification kalit xato");
+            if (!user) throw new Error("Verification kalit xato");
             let x = await users.updateOne({
-                _id:id,
-            },
-            {
-                isVerified:true
+                _id: id,
+            }, {
+                isVerified: true
             });
 
-
-        console.log(user);
+            res.cookie("token", await createToken({
+                id: user._id,
+            })).redirect("/");
+            console.log(user);
         } catch (error) {
             res.render("login", {
                 error: error + "",
             })
+        }
+    }
+    static async userLoginPostController(req, res) {
+        try {
+            const {
+                email,
+                password
+            } = loginValidation(req.body);
+        } catch (error) {
+
         }
     }
 }
