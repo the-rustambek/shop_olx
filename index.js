@@ -1,5 +1,5 @@
 require("dotenv").config();
-require("./test")
+// require("./test")
 
 const server = require('./src/server');
 

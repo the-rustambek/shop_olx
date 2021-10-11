@@ -1,26 +1,26 @@
-const categories = require("./src/models/categoryModel");
+// const categories = require("./src/models/categoryModel");
 
-(async () =>{
-    const data =  await categories.insertMany([
-        {
-            name:"Kitoblar",
-            photo: "book_icon.jpg",
+// (async () =>{
+//     const data =  await categories.insertMany([
+//         {
+//             name:"Kitoblar",
+//             photo: "book_icon.jpg",
 
-        },
-        {
-            name:"Mashinalarr",
-            photo: "mashina.png",
+//         },
+//         {
+//             name:"Mashinalarr",
+//             photo: "mashina.png",
             
-        },
-        {
-            name:"Electronic",
-            photo: "electronic.jpg",
+//         },
+//         {
+//             name:"Electronic",
+//             photo: "electronic.jpg",
             
-        },
-        {
-            name:"Tekinga almashaman"
-        },
+//         },
+//         {
+//             name:"Tekinga almashaman"
+//         },
 
-    ]);
-    console.log(data);
-})();
+//     ]);
+//     console.log(data);
+// })();
