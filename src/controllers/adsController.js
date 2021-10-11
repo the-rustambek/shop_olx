@@ -70,7 +70,7 @@ module.exports = class adsRouteController {
 static async adsOneGetController(req,res){
 	const adsOne = await ads.findOne({
 		slug:req.params.slug,
-	}).populate("owner_id").populate("category_id");
+	}).populate("category_id");
 	console.log(adsOne);
 	res.render("ads_page",{
 		ads:adsOne,
