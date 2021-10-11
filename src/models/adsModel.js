@@ -1,3 +1,4 @@
+const { string } = require("joi");
 const mongoose =  require("mongoose");
 
 const adsSchema = new mongoose.Schema({
@@ -6,18 +7,38 @@ const adsSchema = new mongoose.Schema({
    
     required:true,
   },
-
-  password:{
-    type:String,
+  number:{
+      type:string,
+      required:true,
+  },
+  address:{
+    type:string,
     required:true,
   },
-  isVerified:{
-    type:Boolean, 
+
+  category_id:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"categories",
+  },
+  owner:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"users",
+      
+  },
+  file:[String],
+
+    price:{
+      type:number,
+      required:true,
+  },
+description:{
+    type:String,
     required:true,
-    default:false,
-  }
+}
+
+
 });
 
-const users = mongoose.model("users",adsSchema);
+const ads = mongoose.model("ads",adsSchema);
 
-module.exports =  users;
+module.exports =  adss;
