@@ -21,7 +21,7 @@ module.exports = class Validations {
     static async addAdsValidation(data) {
         return await joi.object({
             title: joi.string().required().min(3).max(128).error(new Error("Sarlavhada xato bor")),
-            number: joi.number().required().min(3).error(new Error("Telefon raqamda xato bor")),
+            number: joi.string().required().error(new Error("Raqam O'zbekistonniki emas")).pattern( /^998(9[012345789]|6[125679]|7[01234569])[0-9]{7}$/),
             address: joi.string().required().min(3).max(128).error(new Error("Addresda xato bor")),
             category: joi.string().required().error(new Error("Categoryada xato bor")),
             file: joi.string(),

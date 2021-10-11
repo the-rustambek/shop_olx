@@ -1,5 +1,5 @@
 <%- include("parts/header")  %> 
-<% var error  %> 
+<% var error %> 
 
 <div class="ads text-light" style="padding:80px">
     <div class="container ">
@@ -10,9 +10,9 @@
                 
                 <div class="col-md-10 col-lg-10 g-3">
                     
-                  <form class="needs-validation row g-3"method="POST"  enctype="multipart/form-data" novalidate>
+                  <form class="needs-validation row g-3"method="POST"  enctype="multipart/form-data" >
                     <% if(error) {%> 
-                      <div class="alert my-2 alert-danger">
+                      <div class="alert alert-danger">
                           <%= error  %> 
                       </div>
                   <% } %> 
