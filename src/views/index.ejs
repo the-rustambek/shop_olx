@@ -5,7 +5,29 @@
 
 <div class="content my-3  " style="padding:80px 0px;">
   <div class="container">
-    <h2 class="text-center text-light h1  mb-4"> List of ads</h2>
+<h2 class="text-center text-light">
+  Kategoriyalar
+</h2>
+
+
+<div class="row">
+  <% for (let category of categories) { %>
+  <div class="col-4">
+
+    <div class="card" style="flex-grow:1;">
+      <img src="public/images/<%= category.photo %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= category.name %></h5>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+
+  </div>
+  
+  <% } %>
+</div>
+    <!-- <h2 class="text-center text-light h1  mb-4"> List of ads</h2>
     <ul class="content-list  d-flex justify-content-evenly align-items-center flex-wrap">
   
       <li class="content-item mt-3 ">
@@ -117,7 +139,7 @@
       </li>
       <% }) %>
 
-    </ul>
+    </ul> -->
   </div>
 </div>
 
