@@ -115,7 +115,7 @@ module.exports = class userRouteController {
                 user_agent:req.headers["user-agent"],
             });
 
-            console.log(session, "nimalar");
+            // console.log(session);
 
             res.cookie("token",await createToken({
                 session_id:session._id,

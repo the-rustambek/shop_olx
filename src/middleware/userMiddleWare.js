@@ -1,6 +1,7 @@
 const  {checkToken
 } =  require("../modules/jwt");
 const users =  require("../models/userModels");
+const sessions = require("../models/sessionsModel");
 
 
 
@@ -18,12 +19,19 @@ module.exports = async function userMiddleWare(req,res,next){
             return;
         }
 
-        const user = await users.findOne({
-            _id: data.id,
-        });
-        // console.log(user);
-        req.user =  user;
-        next();
+        const session = await sessions.findOne({
+            _id: data.session_id,
+        }).populate("owner_id");
+
+
+
+        if(!session){
+            next();
+            return;
+        }
+
+        req.user =  session.owner_id;
+        next()
     }
     catch(error){
         next();
