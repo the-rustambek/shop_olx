@@ -1,7 +1,39 @@
-<%- include("parts/header") %>
 
-<h1 class="text-light text-center m-4 p-4">
-    <%= user.name %>'s profile 
-</h1>
+<%- include('parts/header') %> <% var user_ads %>
 
-<%- include("parts/footer") %>
+<section class="m-4 p-4">
+	<div class="container">
+		<h2 class="text-center">   <%= user.name %>'s profile </h2>
+
+		<div class="row mt-4">
+			<% for(let ads of user_ads) {%>
+			<div class="col-lg-4 col-md-6">
+				<div class="card text-center" style="flex-grow: 1">
+					<img
+						src="/public/uploads/<%= ads.photos[0]%>"
+						class="card-img-top"
+						style="
+							height: 200px;
+							width: 200px;
+							object-fit: cover;
+							margin: 0 auto;
+						"
+						alt="..."
+					/>
+					<div class="card-body">
+						<a
+							href="/ads/<%= ads.slug%>"
+							class="btn btn-primary m-0 p-2"
+							><h5 class="card-title p-0 m-0">
+								<%= ads.title %>
+							</h5></a
+						>
+					</div>
+				</div>
+			</div>
+			<%} %>
+		</div>
+	</div>
+</section>
+
+<%- include('parts/footer') %>

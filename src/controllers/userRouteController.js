@@ -125,9 +125,25 @@ module.exports = class userRouteController {
         res.clearCookie("token").redirect("/");
     }
 
+
+
 static async userProfileGetController(req,res){
+    
+    const user = await users.findById(req.params?.id);
+
+    if(!user){
+        res.redirect("/");
+        return 0;
+    }
+
+    const user_ads = await ads.find({
+        owner_id: user._id,
+    })
+
     res.render("profile",{
-        user:req.user,
+        user:user,
+        user_ads,
+
     });
 }
 }
