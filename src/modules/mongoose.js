@@ -2,6 +2,7 @@ const mongoose =  require("mongoose");
 require("../models/userModels");
 require("../models/adsModel");
 require("../models/categoryModel");
+require("../models/sessionsModel");
 
 const users =  require("../models/userModels");
 

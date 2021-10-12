@@ -20,7 +20,7 @@ const {
     isValidObjectId
 } = require("mongoose");
 const ads = require("../models/adsModel");
-
+const sessions = require("../models/sessionsModel");
 
 module.exports = class userRouteController {
     static async userRegGetController(req, res) {
@@ -109,8 +109,16 @@ module.exports = class userRouteController {
 
             if(!(await compareHash(password, user.password)))
             throw new Error("Parol xato");
+
+            const session = await sessions.create({
+                owner_id:user._id,
+                user_agent:req.headers["user-agent"],
+            });
+
+            console.log(session, "nimalar");
+
             res.cookie("token",await createToken({
-                id:user._id,
+                session_id:session._id,
             })).redirect("/");
 
 
