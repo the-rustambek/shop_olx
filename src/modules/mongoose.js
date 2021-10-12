@@ -3,6 +3,7 @@ require("../models/userModels");
 require("../models/adsModel");
 require("../models/categoryModel");
 require("../models/sessionsModel");
+require("../models/messageModel");
 
 const users =  require("../models/userModels");
 
