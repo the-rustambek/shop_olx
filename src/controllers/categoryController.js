@@ -24,7 +24,7 @@ if(!category){
   return 0;
 }
 
-const category_ads = await ads.findOne({
+const category_ads = await ads.find({
   category_id:id,
 })
     res.render("category",{
