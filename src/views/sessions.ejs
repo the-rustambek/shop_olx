@@ -1,0 +1,37 @@
+<%- include("parts/header") %>
+
+
+
+
+<div class="content my-3" >
+  <div class="container">
+<h2 class="text-center text-light">
+Seanslar
+</h2>
+
+<table class="mt-4 table table-striped text-light">
+    <thead>
+        <tr>
+            <th >User agent</th>
+            <th>Harakatlar</th>
+        </tr>
+    </thead>
+    <tbody class="text-light">
+         <% for(let session of user_sessions) { %>
+            <tr class="text-light">
+                <td class="text-light">
+                    <%= session.user_agent %>
+                </td>
+                <td>
+                    <a href="/users/sessions/delete/<%= session._id %>" class="btn btn-danger">O'chirish</a>
+                </td>
+            </tr>
+            <% }  %>
+    </tbody>
+</table>
+   </div>
+</div>
+
+
+
+<%- include("parts/footer") %>
