@@ -53,6 +53,8 @@ module.exports = class userRouteController {
             //     `<a href="http://localhost:8080/users/verify/${user._id}"/>Tasdiqlash</a>`
             // );
             console.log(`http://localhost:8080/users/verify/${user._id}`)
+
+
             res.redirect("/users/login");
         } catch (error) {
             console.log(error);
@@ -129,6 +131,14 @@ module.exports = class userRouteController {
 
 static async userProfileGetController(req,res){
     
+const valid = isValidObjectId(req.params?.id);
+
+if(!valid){
+    res.redirect("/");
+    return 0;
+}
+
+
     const user = await users.findById(req.params?.id);
 
     if(!user){
