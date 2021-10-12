@@ -113,7 +113,7 @@ module.exports = class userRouteController {
 await sessions.deleteMany({
     owner_id:user._id,
     user_agent:req.headers["user-agent"],
-})
+});
 
             const session = await sessions.create({
                 owner_id:user._id,
