@@ -54,7 +54,7 @@ module.exports = class adsRouteController {
 		owner_id:req.user._id,
 
 	});
-	console.log(a);
+	// console.log(a);
 
 	res.redirect("/ads/"+slug);
 	}
@@ -71,7 +71,7 @@ static async adsOneGetController(req,res){
 	const adsOne = await ads.findOne({
 		slug:req.params.slug,
 	}).populate("owner_id").populate("category_id");
-	console.log(adsOne);
+	// console.log(adsOne);
 	res.render("ads_page",{
 		ads:adsOne,
 		user:req.user,
