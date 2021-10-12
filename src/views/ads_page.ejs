@@ -10,17 +10,16 @@
 <div class="card mb-3 mt-4" >
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="/public/uploads/<%=  ads.photos[0] %>" class="img-fluid rounded-start" alt="...">
+      <img src="/public/uploads/<%=  ads.photos[0] %>" class="img-fluid rounded-start " style="width: 300px; height: 218px; object-fit:cover;" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-       <table class="table-striped">
+       <table class="table-striped table table-dark table-hover">
          <thead>
            <tr>
              <th>Xususiyat</th>
-             <th>Telefon</th>
+       
              <th>Qiymat</th>
-             <th>Category haqida</th>
 
            </tr>
          </thead>
@@ -34,10 +33,10 @@
            <tr>
             <td>Telefon</td>
             <td>
-   <a href="/users/<%=  ads.owner_id %>">
-   <%=  ads.name  %>
-  </a>
-  <span>          <%=   ads.number %></span>
+            <a href="/users/<%=  ads.owner_id %>">
+         <%=  ads.owner_id.name  %>
+    </a>
+    <span>          <%=   ads.number %></span>
             </td>
           </tr>
           <tr>
