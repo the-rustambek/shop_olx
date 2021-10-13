@@ -2,8 +2,10 @@ const users = require("../models/userModels");
 const {isValidObjectId} = require("mongoose");
 const messages =  require("../models/messageModel");
 const { $where} = require("../models/messageModel");
+const { messageValidation } = require("../modules/validations");
 
 module.exports = class messagesRouteController {
+ 
   static async messagesGetController(req, res) {
 
     try{
@@ -45,12 +47,25 @@ module.exports = class messagesRouteController {
       res.render("messages",{
         user:req.user,
         receiver:receiver_id,
+        chats,
       });
 
     }
       catch(error){
         console.log(error)
         res.redirect("/");
+      }
+    }
+
+
+    static async messagesPostController(req,res){
+      try{
+const {message_text } = await messageValidation(req.body);
+
+if(!(isValidObjectId(req.user._id) && isValidObjectId(req.params?.id))
+      }
+      catch(error){
+        console.log(error);
       }
     }
 

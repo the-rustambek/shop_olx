@@ -32,4 +32,12 @@ module.exports = class Validations {
             description: joi.string().required().min(8).max(1024).error(new Error("Description da xato bor")),
         }).validateAsync(data);
     }
+
+
+
+    static async messageValidation(data) {
+        return await joi.object({
+            message_text: joi.string().required().trim().min(2).max(1024).error(new Error("Matnda xato bor")),
+        }).validateAsync(data);
+    }
 }
