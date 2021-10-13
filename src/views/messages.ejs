@@ -1,0 +1,39 @@
+<%- include("parts/header") %>
+<% var category = category || [] %> 
+
+
+
+<div class="content my-3  " style="padding:80px 0px;">
+  <div class="container">
+<h2 class="text-center text-light">
+ Xabarlar
+</h2>
+
+
+
+<ul class="list-unstyled w-75 mx-auto d-flex flex-column align-items-start border border-light border-3">
+
+    <li class="d-inline-block p-3 border border-2 border-success my-2">
+        <p class="p-0 text-light m-0">Xabar</p>
+    </li>
+    <li class="d-inline-block p-3 border align-self-end border-2 border-primarymy-2">
+        <p class="p-0  text-light m-0">Xabar</p>
+    </li>
+</ul>
+
+
+<form action="/send_message" method="POST" class="w-75 mx-auto">
+
+<textarea name="message" class="form-control"></textarea>
+<button class="btn w-100 mt-2 btn-outline-primary">
+    Yuborish
+</button>
+</form>
+
+
+   </div>
+</div>
+
+
+
+<%- include("parts/footer") %>

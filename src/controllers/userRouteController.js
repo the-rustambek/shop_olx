@@ -164,7 +164,7 @@ if(!valid){
     })
 
     res.render("profile",{
-        user:user,
+        user:req.user,
         profile:user,
         isOwnProfile:req.user._id.equals(user._id),
         user_ads,
