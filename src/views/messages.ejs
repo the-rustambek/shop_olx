@@ -13,17 +13,40 @@
 </h2>
 
 
-
-<ul class="list-unstyled w-75 mx-auto d-flex flex-column align-items-start border border-light border-3">
-
-    <li class="d-inline-block p-3 border border-2 border-success my-2">
-        <p class="p-0 text-light m-0">Xabar</p>
-    </li>
-    <li class="d-inline-block p-3 border align-self-end border-2 border-primarymy-2">
-        <p class="p-0  text-light m-0">Xabar</p>
-    </li>
-</ul>
-
+<ul
+			id="messages"
+			class="
+				list-unstyled
+				w-75
+				mx-auto
+				d-flex
+				flex-column
+				align-items-start
+				border border-light border-3
+				p-2
+			"
+			style="max-height: 70vh; overflow: auto"
+		>
+			<% for(let message of chats) {%> <%
+			if(!(user._id.equals(message.owner_id)) ) {%>
+			<li class="d-inline-block p-3 border border-2 border-success my-2">
+				<p class="p-0 m-0"><%= message.message_text %></p>
+			</li>
+			<% } else { %>
+			<li
+				class="
+					d-inline-block
+					p-3
+					border
+					align-self-end
+					border-2 border-primary
+					my-2
+				"
+			>
+				<p class="p-0 m-0"><%= message.message_text %></p>
+			</li>
+			<%} %> <% } %>
+		</ul>
 
 <form id="message_form" method="POST" class="w-75 mx-auto">
 
