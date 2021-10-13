@@ -5,8 +5,11 @@
 
 <div class="content my-3  " style="padding:80px 0px;">
   <div class="container">
+      <p id="receiver_id" class="visually-hidden">
+          <%=  receiver._id %>
+      </p>
 <h2 class="text-center text-light">
- Xabarlar
+ Xabarlar <%= receiver.name %>
 </h2>
 
 
@@ -22,9 +25,9 @@
 </ul>
 
 
-<form action="/send_message" method="POST" class="w-75 mx-auto">
+<form id="message_form" method="POST" class="w-75 mx-auto">
 
-<textarea name="message" class="form-control"></textarea>
+<textarea  id="text_area" name="message_text" class="form-control"></textarea>
 <button class="btn w-100 mt-2 btn-outline-primary">
     Yuborish
 </button>

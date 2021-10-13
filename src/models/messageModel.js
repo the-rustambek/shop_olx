@@ -20,7 +20,10 @@ const messagesSchema = new mongoose.Schema({
     ref:"users",
   },
 
-
+created_date:{
+  type:Date,
+  default:new Date(),
+}
 });
 
 const messages = mongoose.model("messages",messagesSchema);
