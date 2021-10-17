@@ -60,6 +60,61 @@
    </div>
 </div>
 
+<script>
+
+const form = document.querySelector("#message_form");
+const text_area = document.querySelector("#text_area");
+const messages = document.querySelector("#messages");
+
+form.addEventListener("submit",async(event) =>{
+	event.preventDefault();
+
+
+	if(text_area.value.length >=2){
+		let chat = await send_message(text_area.value);
+		// console.log(chat);
+
+		const element =`<li
+				class="
+					d-inline-block
+					p-3
+					border
+					align-self-end
+					border-2 border-primary
+					my-2
+				"
+			>
+				<p class="p-0 m-0 text-light">${text_area.value}</p>
+			</li>`
+	}
+
+	messages.innerHTML += element;
+});
+
+
+messages.scrollTop = messages.scrollHeight;
+
+ 
+
+async function send_message(message_text){
+	console.log(message_text)
+	let response = await fetch("",{
+		method:"POST",
+		headers:{
+			"Content-Type": "application/json",
+		},
+		body:JSON.stringify({
+			message_text:message_text,
+			
+		}),
+	});
+
+	response =  await response.json();
+	return response;
+}
+
+
+</script>
 
 
 <%- include("parts/footer") %>
