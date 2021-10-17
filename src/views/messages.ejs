@@ -60,7 +60,19 @@
    </div>
 </div>
 
+<script src="/socket/socket.io.js"></script>
+
 <script>
+const socket =io();
+// console.log(document.cookie.replace("token=",""))
+socket.emit("new_connection",{
+	token:document.cookie.replace("token=",""),
+});
+
+socket.on("connected",(data) =>{
+	console.log(data);
+})
+
 
 const form = document.querySelector("#message_form");
 const text_area = document.querySelector("#text_area");
@@ -95,23 +107,29 @@ form.addEventListener("submit",async(event) =>{
 messages.scrollTop = messages.scrollHeight;
 
  
-
 async function send_message(message_text){
-	console.log(message_text)
-	let response = await fetch("",{
-		method:"POST",
-		headers:{
-			"Content-Type": "application/json",
-		},
-		body:JSON.stringify({
-			message_text:message_text,
-			
-		}),
-	});
-
-	response =  await response.json();
-	return response;
+	socket.emit("send_message",{
+		message_text,
+	})
 }
+
+
+// async function send_message(message_text){
+// 	// console.log(message_text)
+// 	let response = await fetch("",{
+// 		method:"POST",
+// 		headers:{
+// 			"Content-Type": "application/json",
+// 		},
+// 		body:JSON.stringify({
+// 			message_text:message_text,
+			
+// 		}),
+// 	});
+
+// 	response =  await response.json();
+// 	return response;
+// }
 
 
 </script>

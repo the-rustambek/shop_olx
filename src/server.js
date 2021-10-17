@@ -8,16 +8,33 @@ const routes = require('./routes/routes');
 const mongo = require("./modules/mongoose");
 const userMiddleWare = require("./middleware/userMiddleWare")
 
+const {createServer} = require("http");
+const {Server} = require("socket.io");
+const socket = require("./modules/socket");
+
 
 async function server(mode){
     const app = express();
-    app.listen(PORT, (_) => console.log(`Server ready  at ${PORT}`));
+    const httpServer = createServer(app);
+    const io = new Server(httpServer);
+    socket(io);
+
+    httpServer.listen(PORT, (_) => console.log(`Server ready  at ${PORT}`));
+    
+    // app.use((req,res,next) =>{
+    //     req.io = io;
+    //     next();
+    // });
+    
+    
     try {    
     app.use(express.json());
     app.use(express.urlencoded({
         extended:true,
     }));
     app.use(cookieParser());
+app.use("/socket",express.static(path.join(__dirname,"..","node_modules","socket.io","client-dist")));
+
     await mongo();
     app.use("/public", express.static(path.join(__dirname, "public")));
     app.use(userMiddleWare);

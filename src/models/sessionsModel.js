@@ -14,6 +14,11 @@ const sessionsSchema = new mongoose.Schema({
     default:new Date(),
 },
 
+socket_id:{
+    type:String,
+},
+
+
 });
 
 const sessions = mongoose.model("sessions",sessionsSchema);

@@ -4,7 +4,7 @@ const authMiddleWare =  require("../middleware/authMiddleWare")
 
 router.get("/:id",authMiddleWare,messagesGetController
 );
-router.post("/:id", authMiddleWare, messagesPostController)
+// router.post("/:id", authMiddleWare, messagesPostController)
 
 module.exports = {
     path: "/messages",
