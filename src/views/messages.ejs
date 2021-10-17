@@ -30,7 +30,7 @@
 			<% for(let message of chats) {%> <%
 			if(!(user._id.equals(message.owner_id)) ) {%>
 			<li class="d-inline-block p-3 border border-2 border-success my-2">
-				<p class="p-0 m-0"><%= message.message_text %></p>
+				<p class="p-0 m-0 text-light"><%= message.message_text %></p>
 			</li>
 			<% } else { %>
 			<li
@@ -43,14 +43,14 @@
 					my-2
 				"
 			>
-				<p class="p-0 m-0"><%= message.message_text %></p>
+				<p class="p-0 m-0 text-light"><%= message.message_text %></p>
 			</li>
 			<%} %> <% } %>
 		</ul>
 
 <form id="message_form" method="POST" class="w-75 mx-auto">
 
-<textarea  id="text_area" name="message_text" class="form-control"></textarea>
+<textarea  id="text_area" name="message_text" class="form-control "></textarea>
 <button class="btn w-100 mt-2 btn-outline-primary">
     Yuborish
 </button>
