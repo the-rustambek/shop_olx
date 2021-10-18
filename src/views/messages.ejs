@@ -69,14 +69,15 @@ socket.emit("new_connection",{
 	token:document.cookie.replace("token=",""),
 });
 
-socket.on("connected",(data) =>{
-	console.log(data);
-})
+// socket.on("connected",(data) =>{
+// 	console.log(data);
+// })
 
 
 const form = document.querySelector("#message_form");
 const text_area = document.querySelector("#text_area");
 const messages = document.querySelector("#messages");
+const receiver_id = document.querySelector("#receiver_id").innerText;
 
 form.addEventListener("submit",async(event) =>{
 	event.preventDefault();
@@ -101,18 +102,45 @@ form.addEventListener("submit",async(event) =>{
 	}
 
 	messages.innerHTML += element;
-});
 
+	messages.scrollTop = messages.scrollHeight;
+});
 
 messages.scrollTop = messages.scrollHeight;
 
- 
+
+	// console.log(innerText);
+
 async function send_message(message_text){
 	socket.emit("send_message",{
 		message_text,
+		receiver_id:receiver_id,
 	})
 }
 
+
+socket.on("new_message",(data) =>{
+	// console.log(data);
+
+	const element =`<li
+				class="
+					d-inline-block
+					p-3
+					border
+				
+					border-2 border-success
+					my-2
+				"
+			>
+				<p class="p-0 m-0 text-light">${data}</p>
+			</li>`
+			messages.innerHTML += element;
+
+messages.scrollTop = messages.scrollHeight;
+	
+
+
+} )
 
 // async function send_message(message_text){
 // 	// console.log(message_text)

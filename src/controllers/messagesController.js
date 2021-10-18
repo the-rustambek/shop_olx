@@ -11,7 +11,6 @@ const {
 } = require("../modules/validations");
 
 module.exports = class messagesRouteController {
-
     static async messagesGetController(req, res) {
 
       try {
@@ -92,7 +91,7 @@ module.exports = class messagesRouteController {
           console.log(error);
           res.json({
             ok:false, 
-            message:error+""
+            message:error + ""
           })
           // res.redirect("/messages/"+req.params.id);
         }

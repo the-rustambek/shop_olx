@@ -1,5 +1,12 @@
 const sessions = require("../models/sessionsModel");
 const { checkToken } = require("./jwt");
+const {
+    messageValidation
+  } = require("../modules/validations");
+  const {
+    isValidObjectId
+  } = require("mongoose");
+  const messages = require("../models/messageModel"); 
 
 module.exports = function Socket(io){
     io.on("connection", (socket) =>{
@@ -43,6 +50,33 @@ const socket_session = await sessions.findOne({
 
 
 if(!socket_session) return;
-        // console.log(data);
+
+if(!(data.message_text && data.message_text.length >= 2 && data.message_text.length < 1024))
+return;
+
+
+if(!isValidObjectId(data.receiver_id))     return;
+
+const chat = await messages.create({
+    message_text:data.message_text,
+    owner_id:socket_session.owner_id,
+    receiver_id:data.receiver_id,
+});
+
+// console.log(chat);
+let receiver_session = await sessions.find({
+    owner_id:data.receiver_id,
+})
+
+// let receiver_session =await messages.create({
+//     message_text:data.message_text,
+//     owner_id:socket_session.owner_id,
+//     receiver_id:data.receiver_id,
+// });
+
+receiver_session =  await receiver_session.map((s) => s.socket_id);
+
+receiver_session =  await receiver_session.filter((s) => s);
+socket.io(receiver_session).emit("new_message",data.message_text);
     });
 }

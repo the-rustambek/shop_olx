@@ -6,8 +6,7 @@ const cookieParser = require("cookie-parser");
 const path = require('path');
 const routes = require('./routes/routes');
 const mongo = require("./modules/mongoose");
-const userMiddleWare = require("./middleware/userMiddleWare")
-
+const userMiddleWare = require("./middleware/userMiddleWare");
 const {createServer} = require("http");
 const {Server} = require("socket.io");
 const socket = require("./modules/socket");
