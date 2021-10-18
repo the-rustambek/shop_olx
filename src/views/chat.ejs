@@ -1,0 +1,108 @@
+<%- include("parts/header") %>
+
+<div class="content my-3  " style="padding:80px 0px;">
+  <div class="container">
+<h2 class="text-center text-light">
+Chat
+</h2>
+
+<div class="row justify-content-center mt-4 pt-4">
+    <div class="col-8">
+        <form id="form">
+            <textarea name="message" class="w-100" id="message_text"></textarea>
+            <button class="btn btn-primary mt-2 w-100">
+                Jo'natish
+            </button>
+        </form>
+        <ul class="list-unstyled" id="list">
+            <% for(let message of messages) { %>
+                <li class="border border-2 border-primary p-2 my-2">
+                    <strong class="m-0 text-light p-0"><%= message.owner_id.name %>:</strong>
+                    <p class="m-0 p-0 text-light ">
+                        <%=  message.message_text %>.
+                    </p>
+                </li>
+
+          <%  }%>
+         
+        </ul>
+    </div>
+</div>
+
+
+   </div>
+</div>
+
+
+<script src="/socket/socket.io.js"></script>
+
+
+<script>
+    const formElement = document.querySelector("#form");
+    const messageTextElement = document.querySelector("#message_text");
+
+const listElement = document.querySelector("#list");
+const socket = io();
+
+socket.emit("new_connection",{
+    token: document.cookie.replace("token=","")
+})
+
+
+socket.on("connected",(data) =>{
+    console.log(data);
+})
+
+
+
+    function send_message(text){
+        // alert("message");
+        socket.emit("new_public_message",{
+            message_text:text,
+        });
+
+        add_new_message_to_front({
+            owner_name: "O'zim",
+            message_text: text,
+        })
+        formElement.reset();
+    }
+
+socket.on("new_public_message",(data) =>{
+   add_new_message_to_front(data);
+})
+    
+    formElement.addEventListener("submit",(event) =>{
+        event.preventDefault();
+        if(messageTextElement.value<1){
+            return 0;
+        }
+        send_message(messageTextElement.value);
+    });
+
+function add_new_message_to_front(message){
+    listElement.innerText = ` <li class="border border-2 border-primary p-2 my-2">
+                <strong class="m-0 text-light p-0">${message.owner_name}:</strong>
+                <p class="m-0 p-0 text-light ">
+                ${message.message_text}
+                </p>
+            </li>` + listElement.innerHTML;
+}
+
+
+    messageTextElement.addEventListener("keyup",(event) =>{
+        if(messageTextElement.value<1){
+            return 0;
+        }
+// console.log(event.keyCode);
+
+if(event.keyCode ===13){
+    send_message(messageTextElement.value);
+}
+ 
+        
+    })
+</script>
+
+
+<%- include("parts/footer") %>

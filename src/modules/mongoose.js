@@ -4,6 +4,7 @@ require("../models/adsModel");
 require("../models/categoryModel");
 require("../models/sessionsModel");
 require("../models/messageModel");
+require("../models/chatModels");
 
 const users =  require("../models/userModels");
 
