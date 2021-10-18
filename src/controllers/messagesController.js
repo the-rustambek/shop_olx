@@ -1,18 +1,11 @@
 const users = require("../models/userModels");
-const {
-  isValidObjectId
-} = require("mongoose");
+const {isValidObjectId} = require("mongoose");
 const messages = require("../models/messageModel");
-const {
-  $where
-} = require("../models/messageModel");
-const {
-  messageValidation
-} = require("../modules/validations");
+const {$where} = require("../models/messageModel");
+const {messageValidation} = require("../modules/validations");
 
 module.exports = class messagesRouteController {
     static async messagesGetController(req, res) {
-
       try {
         const isValidId = isValidObjectId(req.params?.id);
         if (!isValidId) throw new Error("Invalid");
@@ -54,7 +47,7 @@ module.exports = class messagesRouteController {
         });
 
       } catch (error) {
-        console.log(error)
+        console.log(error);
         res.redirect("/");
       }
     }
@@ -79,11 +72,11 @@ module.exports = class messagesRouteController {
             owner_id:req.user._id,
             receiver_id:req.params?.id,
 
-          })
+          });
 
           res.json({
             ok:true,
-          })
+          });
           // console.log(chat)
           // res.redirect("/messages/"+req.params.id);
         }
@@ -92,7 +85,7 @@ module.exports = class messagesRouteController {
           res.json({
             ok:false, 
             message:error + ""
-          })
+          });
           // res.redirect("/messages/"+req.params.id);
         }
       }
