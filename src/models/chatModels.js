@@ -19,6 +19,9 @@ created_date:{
   type:Date,
   default:new Date(),
 }
+
+},{
+  timestamps:true,
 });
 
 const chats = mongoose.model("chats",chatSchema);

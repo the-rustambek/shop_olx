@@ -4,6 +4,7 @@
   <div class="container">
 <h2 class="text-center text-light">
 Chat
+<button id="mute_element" class="btn btn-danger ms-4">Mute</button>
 </h2>
 
 <div class="row justify-content-center mt-4 pt-4">
@@ -33,6 +34,8 @@ Chat
    </div>
 </div>
 
+<audio id="audio_element"  src="/public/audios/alert.mp3"></audio>
+
 
 <script src="/socket/socket.io.js"></script>
 
@@ -43,11 +46,25 @@ Chat
 
 const listElement = document.querySelector("#list");
 const socket = io();
+const audioElement = document.querySelector("#audio_element");
+const muteElement = document.querySelector("#mute_element");
+
 
 socket.emit("new_connection",{
     token: document.cookie.replace("token=","")
 })
 
+
+muteElement.addEventListener("click",event =>{
+    if(muteElement.textContent =="Muted"){
+        audioElement.muted = false;
+        muteElement.textContent ="Mute";
+    }
+    else{
+        audioElement.muted = true;
+        muteElement.textContent ="Muted";
+    }
+})
 
 socket.on("connected",(data) =>{
     console.log(data);
@@ -70,6 +87,7 @@ socket.on("connected",(data) =>{
 
 socket.on("new_public_message",(data) =>{
    add_new_message_to_front(data);
+   audioElement.play()
 })
     
     formElement.addEventListener("submit",(event) =>{
@@ -81,7 +99,7 @@ socket.on("new_public_message",(data) =>{
     });
 
 function add_new_message_to_front(message){
-    listElement.innerText = ` <li class="border border-2 border-primary p-2 my-2">
+                 listElement.innerHTML = ` <li class="border border-2 border-primary p-2 my-2">
                 <strong class="m-0 text-light p-0">${message.owner_name}:</strong>
                 <p class="m-0 p-0 text-light ">
                 ${message.message_text}
